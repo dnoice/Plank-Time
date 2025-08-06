@@ -1,0 +1,106 @@
+{
+  "name": "plank-time",
+  "version": "1.0.0",
+  "description": "Ultimate time management web application with modern design and comprehensive features",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s .",
+    "dev": "live-server --port=3000 --open=/",
+    "build": "echo 'No build process needed - pure HTML/CSS/JS'",
+    "test": "echo 'No tests configured yet'",
+    "lint": "eslint script.js",
+    "lint:fix": "eslint script.js --fix",
+    "validate": "html-validate index.html",
+    "serve": "python -m http.server 8000 || php -S localhost:8000",
+    "preview": "open http://localhost:8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dnoice/plank-time.git"
+  },
+  "keywords": [
+    "time-management",
+    "productivity",
+    "timer",
+    "stopwatch",
+    "clock",
+    "pomodoro",
+    "alarm",
+    "world-clock",
+    "glassmorphism",
+    "modern-ui",
+    "vanilla-javascript",
+    "css3",
+    "html5",
+    "web-app",
+    "responsive",
+    "dark-theme",
+    "notifications",
+    "pwa-ready"
+  ],
+  "author": {
+    "name": "Plank Time Team",
+    "email": ", densmaltz4@gmail.com",
+    "url": "https://planktime.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dnoice/plank-time/issues"
+  },
+  "homepage": "https://github.com/dnoice/plank-time#readme",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "html-validate": "^8.0.0",
+    "live-server": "^1.2.2",
+    "serve": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "config": {
+    "port": 3000
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "files": [
+    "index.html",
+    "styles.css",
+    "script.js",
+    "README.md",
+    "LICENSE",
+    "assets/"
+  ],
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/dnoice"
+  },
+  "contributors": [
+    {
+      "name": "Claude AI Assistant",
+      "url": "https://claude.ai"
+    }
+  ],
+  "dependencies": {},
+  "peerDependencies": {},
+  "optionalDependencies": {},
+  "bundleDependencies": false,
+  "private": false,
+  "preferGlobal": false,
+  "cpu": [
+    "any"
+  ],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
+}
