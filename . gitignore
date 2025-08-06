@@ -1,0 +1,274 @@
+# Plank Time - Git Ignore Rules
+# File: .gitignore
+# Project: Plank Time
+# Description: Files and directories to exclude from version control
+# Author: Claude AI Assistant
+# Created: August 2025
+
+# ===== DEPENDENCY DIRECTORIES =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# ===== BUILD & DISTRIBUTION =====
+dist/
+build/
+.tmp/
+.cache/
+.parcel-cache/
+
+# ===== LOGS =====
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+
+# ===== RUNTIME DATA =====
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ===== COVERAGE DIRECTORY =====
+lib-cov/
+coverage/
+.nyc_output/
+
+# ===== INSTRUMENTATION =====
+.grunt/
+.lock-wscript
+
+# ===== DEPENDENCY MANAGEMENT =====
+.npm
+node_modules/
+jspm_packages/
+
+# ===== OPTIONAL NPM CACHE =====
+.npm
+
+# ===== OPTIONAL ESLINT CACHE =====
+.eslintcache
+
+# ===== MICROBUNDLE CACHE =====
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# ===== OPTIONAL REPL HISTORY =====
+.node_repl_history
+
+# ===== OUTPUT =====
+*.tgz
+
+# ===== YARN =====
+.yarn-integrity
+yarn.lock
+.yarn/
+.yarnrc.yml
+
+# ===== PACKAGE-LOCK =====
+package-lock.json
+
+# ===== ENVIRONMENT VARIABLES =====
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===== PARCEL =====
+.cache/
+.parcel-cache/
+
+# ===== NEXT.JS =====
+.next/
+out/
+
+# ===== NUXT.JS =====
+.nuxt/
+dist/
+
+# ===== GATSBY =====
+.cache/
+public/
+
+# ===== VUEPRESS =====
+.vuepress/dist/
+
+# ===== SERVERLESS =====
+.serverless/
+
+# ===== FUSEBOX =====
+.fusebox/
+
+# ===== DYNAMODB LOCAL =====
+.dynamodb/
+
+# ===== TERNJS PORT FILE =====
+.tern-port
+
+# ===== STORES =====
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+*.code-workspace
+
+# ===== LOCAL HISTORY FOR VSCODE =====
+.history/
+
+# ===== SUBLIME TEXT =====
+*.sublime-project
+*.sublime-workspace
+
+# ===== VIM =====
+*~
+*.swp
+*.swo
+
+# ===== EMACS =====
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===== JETBRAINS IDEs =====
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# ===== ATOM =====
+.atom/
+
+# ===== OPERATING SYSTEM =====
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===== TEMPORARY FILES =====
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+*.cache
+
+# ===== DEVELOPMENT =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== TESTING =====
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+test-results.xml
+
+# ===== DEPLOYMENT =====
+.vercel/
+.netlify/
+.firebase/
+.surge/
+
+# ===== PROJECT SPECIFIC =====
+
+# User data (should not be committed)
+user-data/
+user-settings.json
+user-preferences.json
+
+# Local development
+local-server/
+dev-assets/
+debug/
+
+# Screenshots and media (unless specifically needed)
+screenshots/
+screen-recordings/
+demo-assets/
+
+# Compressed files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ===== SECURITY =====
+.env
+.env.local
+.env.*.local
+.secret
+secrets/
+private/
+confidential/
+
+# API keys and tokens
+api-keys.json
+tokens.json
+credentials.json
+
+# ===== DOCUMENTATION =====
+# Ignore generated docs (keep source docs)
+docs/generated/
+api-docs/generated/
+
+# ===== ANALYTICS =====
+.analytics/
+usage-stats/
+metrics/
+
+# ===== END OF .gitignore =====
