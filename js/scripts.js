@@ -57,6 +57,9 @@ class PlankTime {
     this.updateWorldClocks();
     this.requestNotificationPermission();
     
+    // Initialize the view system
+    this.initializeViews();
+    
     // Update clocks every second
     setInterval(() => {
       this.updateMainClock();
@@ -64,6 +67,45 @@ class PlankTime {
       this.updateWorldClocks();
       this.checkAlarms();
     }, 1000);
+  }
+
+  // ===== VIEW INITIALIZATION ===== //
+  initializeViews() {
+    // Hide all views first
+    document.querySelectorAll('.view-container').forEach(container => {
+      container.classList.remove('active');
+      container.classList.add('hidden');
+    });
+    
+    // Show the clock view by default
+    const clockView = document.getElementById('clockView');
+    if (clockView) {
+      clockView.classList.remove('hidden');
+      clockView.classList.add('active');
+    }
+    
+    // Set the active navigation
+    const clockTab = document.querySelector('[data-view="clock"]');
+    if (clockTab) {
+      clockTab.classList.add('active');
+      clockTab.setAttribute('aria-selected', 'true');
+    }
+    
+    // Initialize all other nav pills
+    document.querySelectorAll('.nav-pill').forEach(pill => {
+      if (pill !== clockTab) {
+        pill.classList.remove('active');
+        pill.setAttribute('aria-selected', 'false');
+      }
+    });
+    
+    this.currentView = 'clock';
+    
+    // Initialize control states
+    this.updateStopwatchControls();
+    this.updateTimerControls();
+    this.updatePomodoroControls();
+    this.updateSettingsDisplay();
   }
 
   // ===== EVENT LISTENERS ===== //
@@ -173,6 +215,7 @@ class PlankTime {
 
     // Hide all views
     document.querySelectorAll('.view-container').forEach(container => {
+      container.classList.remove('active');
       container.classList.add('hidden');
     });
 
@@ -180,6 +223,7 @@ class PlankTime {
     const targetView = document.getElementById(`${view}View`);
     if (targetView) {
       targetView.classList.remove('hidden');
+      targetView.classList.add('active');
       this.currentView = view;
 
       // Initialize view-specific content
@@ -336,12 +380,14 @@ class PlankTime {
     const toggleBtn = document.getElementById('stopwatchToggle');
     const lapBtn = document.getElementById('stopwatchLap');
     
+    if (!toggleBtn || !lapBtn) return;
+    
     if (this.stopwatch.running) {
-      toggleBtn.innerHTML = '<i class="fas fa-pause"></i><span>Pause</span>';
+      toggleBtn.innerHTML = '<i class="fas fa-pause" aria-hidden="true"></i><span>Pause</span>';
       toggleBtn.className = 'control-btn pause-btn';
       lapBtn.disabled = false;
     } else {
-      toggleBtn.innerHTML = '<i class="fas fa-play"></i><span>Start</span>';
+      toggleBtn.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i><span>Start</span>';
       toggleBtn.className = 'control-btn start-btn';
       lapBtn.disabled = true;
     }
@@ -889,6 +935,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make app globally available for inline event handlers
     window.app = app;
     
+    // Ensure styles are loaded
+    const styleCheck = setTimeout(() => {
+      const navPill = document.querySelector('.nav-pill');
+      if (navPill && getComputedStyle(navPill).backdropFilter === 'none') {
+        console.warn('Styles may not be fully loaded. Forcing refresh...');
+        // Add inline critical styles if CSS fails to load
+        const criticalCSS = document.createElement('style');
+        criticalCSS.innerHTML = `
+          .view-container { display: none; }
+          .view-container.active { display: block; }
+          .glass-card { 
+            background: rgba(255,255,255,0.1); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            border-radius: 1rem; 
+            padding: 2rem; 
+            margin-bottom: 1rem;
+          }
+          .nav-pills { 
+            background: rgba(255,255,255,0.1); 
+            padding: 0.5rem; 
+            border-radius: 1rem; 
+            display: flex; 
+            gap: 0.5rem; 
+            flex-wrap: wrap;
+          }
+          .nav-pill.active { 
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6); 
+            color: white; 
+          }
+        `;
+        document.head.appendChild(criticalCSS);
+      }
+      clearTimeout(styleCheck);
+    }, 1000);
+    
     // Add keyboard shortcuts
     document.addEventListener('keydown', (e) => {
       // Don't trigger shortcuts when typing in inputs
@@ -958,11 +1039,12 @@ document.addEventListener('DOMContentLoaded', () => {
       border-radius: 10px;
       text-align: center;
       z-index: 9999;
+      font-family: Arial, sans-serif;
     `;
     errorDiv.innerHTML = `
       <h3>Application Error</h3>
       <p>Plank Time failed to initialize. Please refresh the page.</p>
-      <button onclick="location.reload()" style="margin-top: 10px; padding: 5px 15px; border: none; border-radius: 5px; cursor: pointer;">
+      <button onclick="location.reload()" style="margin-top: 10px; padding: 5px 15px; border: none; border-radius: 5px; cursor: pointer; background: white; color: #ef4444;">
         Refresh Page
       </button>
     `;
