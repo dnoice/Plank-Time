@@ -8,9 +8,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/yourusername/plank-time/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/dnoice/Plank-Time/graphs/commit-activity)
 
-[🚀 Live Demo](#) • [📖 Documentation](#features) • [🐛 Report Bug](#contributing) • [💡 Request Feature](#contributing)
+[🚀 Live Demo](https://dnoice.github.io/Plank-Time/) • [📖 Documentation](#features) • [🐛 Report Bug](https://github.com/dnoice/Plank-Time/issues) • [💡 Request Feature](https://github.com/dnoice/Plank-Time/issues)
 
 </div>
 
@@ -81,8 +81,8 @@ Plank Time is a comprehensive, browser-based time management suite designed for 
 
 1. **Download the project files**
    ```bash
-   git clone https://github.com/yourusername/plank-time.git
-   cd plank-time
+   git clone https://github.com/dnoice/Plank-Time.git
+   cd Plank-Time
    ```
 
 2. **Serve the files** (choose one method)
@@ -326,8 +326,8 @@ Built-in performance monitoring logs metrics to console:
 ### Development Setup
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/plank-time.git
-cd plank-time
+git clone https://github.com/dnoice/Plank-Time.git
+cd Plank-Time
 
 # Start development server
 python -m http.server 8000
@@ -421,7 +421,7 @@ We welcome contributions! Here's how you can help:
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](https://github.com/dnoice/Plank-Time/blob/main/LICENSE) file for details.
 
 ### What this means:
 - ✅ **Commercial Use** - Use in commercial projects
@@ -463,7 +463,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ### Getting Help
 - 📖 **Documentation** - Check this README first
-- 🐛 **Issues** - Report bugs via GitHub Issues
+- 🐛 **Issues** - Report bugs via [GitHub Issues](https://github.com/dnoice/Plank-Time/issues)
 - 💬 **Discussions** - Community support and feature requests
 - 📧 **Contact** - Direct email for urgent issues
 
@@ -490,8 +490,8 @@ A: Yes! The MIT license allows commercial use without restrictions.
 
 **Made with ❤️ for productivity enthusiasts worldwide**
 
-[![Star this repo](https://img.shields.io/github/stars/yourusername/plank-time?style=social)](https://github.com/yourusername/plank-time)
-[![Follow on GitHub](https://img.shields.io/github/followers/yourusername?style=social)](https://github.com/yourusername)
+[![Star this repo](https://img.shields.io/github/stars/dnoice/Plank-Time?style=social)](https://github.com/dnoice/Plank-Time)
+[![Follow on GitHub](https://img.shields.io/github/followers/dnoice?style=social)](https://github.com/dnoice)
 
 [⬆ Back to top](#-plank-time---ultimate-time-management-suite)
 
