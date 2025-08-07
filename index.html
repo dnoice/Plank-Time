@@ -1,466 +1,355 @@
-<!--
-File: index.html
-Path: /index.html
-Project: Plank Time
-Description: Main HTML interface for comprehensive time management application
-Author: GitHub Repository
-Version: 1.0.0
-Created: 2025-08-06
-Dependencies: Font Awesome 6.4.0, Animate.css, Google Fonts
-Features: Digital/Analog Clock, Stopwatch, Timer, World Clock, Alarms, Pomodoro
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plank Time - Ultimate Time Management</title>
+    <title>Plank Time - Ultimate Time Management Suite</title>
+    <meta name="description" content="Professional time management suite with clock, stopwatch, timer, pomodoro, world clock, and alarms">
+    <meta name="theme-color" content="#3b82f6">
     
-    <!-- External CDN Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Custom Styles -->
+    <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⏰%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-    <!-- Navigation Header -->
-    <nav class="nav-header">
-        <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-clock"></i>
-                <span>Plank Time</span>
-            </div>
-            <div class="nav-controls">
-                <button class="nav-btn" data-tab="clock" title="Clock">
-                    <i class="fas fa-clock"></i>
-                    <span>Clock</span>
-                </button>
-                <button class="nav-btn" data-tab="stopwatch" title="Stopwatch">
-                    <i class="fas fa-stopwatch"></i>
-                    <span>Stopwatch</span>
-                </button>
-                <button class="nav-btn" data-tab="timer" title="Timer">
-                    <i class="fas fa-hourglass-half"></i>
-                    <span>Timer</span>
-                </button>
-                <button class="nav-btn" data-tab="world" title="World Clock">
-                    <i class="fas fa-globe"></i>
-                    <span>World</span>
-                </button>
-                <button class="nav-btn" data-tab="alarms" title="Alarms">
-                    <i class="fas fa-bell"></i>
-                    <span>Alarms</span>
-                </button>
-                <button class="nav-btn" data-tab="pomodoro" title="Pomodoro">
-                    <i class="fas fa-tomato"></i>
-                    <span>Pomodoro</span>
-                </button>
-                <button class="settings-btn" title="Settings">
-                    <i class="fas fa-cog"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Application Container -->
-    <main class="app-container">
+    <div class="app-container">
+        <!-- Background Pattern -->
+        <div class="background-pattern"></div>
         
-        <!-- Clock Tab -->
-        <section class="tab-content active" id="clock-tab">
-            <div class="clock-container">
-                <div class="clock-display">
-                    <div class="digital-clock">
-                        <div class="time-display" id="digital-time">12:00:00</div>
-                        <div class="date-display" id="digital-date">Monday, January 1, 2024</div>
-                        <div class="timezone-display" id="timezone">UTC-8 (PST)</div>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    
-                    <div class="analog-clock" id="analog-clock">
-                        <div class="clock-face">
-                            <div class="hour-markers"></div>
-                            <div class="clock-hands">
-                                <div class="hand hour-hand" id="hour-hand"></div>
-                                <div class="hand minute-hand" id="minute-hand"></div>
-                                <div class="hand second-hand" id="second-hand"></div>
-                                <div class="center-dot"></div>
+                    <h1 class="app-title">Plank Time</h1>
+                </div>
+                <div class="current-time" id="headerTime"></div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation" role="navigation" aria-label="Main navigation">
+            <div class="nav-container">
+                <div class="nav-pills" role="tablist">
+                    <button class="nav-pill active" data-view="clock" role="tab" aria-selected="true" aria-controls="clockView" id="tab-clock">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <span>Clock</span>
+                    </button>
+                    <button class="nav-pill" data-view="stopwatch" role="tab" aria-selected="false" aria-controls="stopwatchView" id="tab-stopwatch">
+                        <i class="fas fa-play" aria-hidden="true"></i>
+                        <span>Stopwatch</span>
+                    </button>
+                    <button class="nav-pill" data-view="timer" role="tab" aria-selected="false" aria-controls="timerView" id="tab-timer">
+                        <i class="fas fa-hourglass-half" aria-hidden="true"></i>
+                        <span>Timer</span>
+                    </button>
+                    <button class="nav-pill" data-view="pomodoro" role="tab" aria-selected="false" aria-controls="pomodoroView" id="tab-pomodoro">
+                        <i class="fas fa-coffee" aria-hidden="true"></i>
+                        <span>Pomodoro</span>
+                    </button>
+                    <button class="nav-pill" data-view="world" role="tab" aria-selected="false" aria-controls="worldView" id="tab-world">
+                        <i class="fas fa-globe" aria-hidden="true"></i>
+                        <span>World Clock</span>
+                    </button>
+                    <button class="nav-pill" data-view="alarms" role="tab" aria-selected="false" aria-controls="alarmsView" id="tab-alarms">
+                        <i class="fas fa-bell" aria-hidden="true"></i>
+                        <span>Alarms</span>
+                    </button>
+                    <button class="nav-pill" data-view="settings" role="tab" aria-selected="false" aria-controls="settingsView" id="tab-settings">
+                        <i class="fas fa-cog" aria-hidden="true"></i>
+                        <span>Settings</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-container">
+                
+                <!-- Clock View -->
+                <div class="view-container" id="clockView" role="tabpanel" aria-labelledby="tab-clock">
+                    <div class="clock-grid">
+                        <!-- Digital Clock -->
+                        <div class="glass-card">
+                            <h2 class="card-title">Digital Clock</h2>
+                            <div class="digital-clock-container">
+                                <div class="digital-time" id="digitalTime" aria-live="polite" aria-label="Current time"></div>
+                                <div class="digital-date" id="digitalDate" aria-live="polite" aria-label="Current date"></div>
+                            </div>
+                        </div>
+
+                        <!-- Analog Clock -->
+                        <div class="glass-card">
+                            <h2 class="card-title">Analog Clock</h2>
+                            <div class="analog-clock-container">
+                                <svg class="analog-clock" viewBox="0 0 200 200" id="analogClock" 
+                                     role="img" aria-label="Analog clock showing current time">
+                                    <title>Analog Clock</title>
+                                    <!-- Clock face -->
+                                    <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                                    
+                                    <!-- Hour markers -->
+                                    <g class="hour-markers" aria-hidden="true"></g>
+                                    
+                                    <!-- Clock hands -->
+                                    <line class="hour-hand" x1="100" y1="100" x2="100" y2="50" 
+                                          stroke="#3b82f6" stroke-width="4" stroke-linecap="round" aria-label="Hour hand"/>
+                                    <line class="minute-hand" x1="100" y1="100" x2="100" y2="30" 
+                                          stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" aria-label="Minute hand"/>
+                                    <line class="second-hand" x1="100" y1="100" x2="100" y2="20" 
+                                          stroke="#ef4444" stroke-width="1" stroke-linecap="round" aria-label="Second hand"/>
+                                    
+                                    <!-- Center dot -->
+                                    <circle cx="100" cy="100" r="4" fill="#ffffff" aria-hidden="true"/>
+                                </svg>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="clock-controls">
-                    <button class="control-btn" id="format-toggle">
-                        <i class="fas fa-exchange-alt"></i>
-                        24H Format
-                    </button>
-                    <button class="control-btn" id="analog-toggle">
-                        <i class="fas fa-eye"></i>
-                        Hide Analog
-                    </button>
-                </div>
-            </div>
-        </section>
 
-        <!-- Stopwatch Tab -->
-        <section class="tab-content" id="stopwatch-tab">
-            <div class="stopwatch-container">
-                <div class="stopwatch-display">
-                    <div class="time-display" id="stopwatch-time">00:00:00</div>
-                    <div class="milliseconds" id="stopwatch-ms">.000</div>
-                </div>
-                
-                <div class="stopwatch-controls">
-                    <button class="control-btn secondary" id="stopwatch-reset">
-                        <i class="fas fa-redo"></i>
-                        Reset
-                    </button>
-                    <button class="control-btn primary" id="stopwatch-start">
-                        <i class="fas fa-play"></i>
-                        Start
-                    </button>
-                    <button class="control-btn secondary" id="stopwatch-lap">
-                        <i class="fas fa-flag"></i>
-                        Lap
-                    </button>
-                </div>
-                
-                <div class="laps-container">
-                    <div class="laps-header">
-                        <h3><i class="fas fa-list"></i> Lap Times</h3>
-                        <button class="clear-laps" id="clear-laps">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                    <div class="laps-list" id="laps-list">
-                        <!-- Lap times will be added here -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Timer Tab -->
-        <section class="tab-content" id="timer-tab">
-            <div class="timer-container">
-                <div class="timer-display">
-                    <div class="timer-circle">
-                        <svg class="progress-ring" width="280" height="280">
-                            <circle class="progress-ring-background" cx="140" cy="140" r="120"></circle>
-                            <circle class="progress-ring-progress" cx="140" cy="140" r="120" id="timer-progress"></circle>
-                        </svg>
-                        <div class="timer-content">
-                            <div class="time-display" id="timer-time">00:00:00</div>
-                            <div class="timer-label" id="timer-label">Set Timer</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timer-inputs">
-                    <div class="time-input">
-                        <label>Hours</label>
-                        <input type="number" id="timer-hours" min="0" max="23" value="0">
-                    </div>
-                    <div class="time-input">
-                        <label>Minutes</label>
-                        <input type="number" id="timer-minutes" min="0" max="59" value="5">
-                    </div>
-                    <div class="time-input">
-                        <label>Seconds</label>
-                        <input type="number" id="timer-seconds" min="0" max="59" value="0">
-                    </div>
-                </div>
-                
-                <div class="timer-controls">
-                    <button class="control-btn secondary" id="timer-reset">
-                        <i class="fas fa-redo"></i>
-                        Reset
-                    </button>
-                    <button class="control-btn primary" id="timer-start">
-                        <i class="fas fa-play"></i>
-                        Start
-                    </button>
-                </div>
-                
-                <div class="timer-presets">
-                    <button class="preset-btn" data-time="300">5 min</button>
-                    <button class="preset-btn" data-time="600">10 min</button>
-                    <button class="preset-btn" data-time="900">15 min</button>
-                    <button class="preset-btn" data-time="1800">30 min</button>
-                    <button class="preset-btn" data-time="3600">1 hour</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- World Clock Tab -->
-        <section class="tab-content" id="world-tab">
-            <div class="world-container">
-                <div class="world-header">
-                    <h2><i class="fas fa-globe"></i> World Clock</h2>
-                    <button class="control-btn" id="add-timezone">
-                        <i class="fas fa-plus"></i>
-                        Add Timezone
-                    </button>
-                </div>
-                
-                <div class="world-clocks" id="world-clocks">
-                    <!-- Default timezones -->
-                    <div class="world-clock-card" data-timezone="America/New_York">
-                        <div class="city-info">
-                            <h3>New York</h3>
-                            <span class="country">United States</span>
-                        </div>
-                        <div class="world-time">
-                            <div class="time">--:--</div>
-                            <div class="date">---</div>
-                        </div>
-                        <button class="remove-btn"><i class="fas fa-times"></i></button>
-                    </div>
-                    
-                    <div class="world-clock-card" data-timezone="Europe/London">
-                        <div class="city-info">
-                            <h3>London</h3>
-                            <span class="country">United Kingdom</span>
-                        </div>
-                        <div class="world-time">
-                            <div class="time">--:--</div>
-                            <div class="date">---</div>
-                        </div>
-                        <button class="remove-btn"><i class="fas fa-times"></i></button>
-                    </div>
-                    
-                    <div class="world-clock-card" data-timezone="Asia/Tokyo">
-                        <div class="city-info">
-                            <h3>Tokyo</h3>
-                            <span class="country">Japan</span>
-                        </div>
-                        <div class="world-time">
-                            <div class="time">--:--</div>
-                            <div class="date">---</div>
-                        </div>
-                        <button class="remove-btn"><i class="fas fa-times"></i></button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Alarms Tab -->
-        <section class="tab-content" id="alarms-tab">
-            <div class="alarms-container">
-                <div class="alarms-header">
-                    <h2><i class="fas fa-bell"></i> Alarms</h2>
-                    <button class="control-btn primary" id="add-alarm">
-                        <i class="fas fa-plus"></i>
-                        Add Alarm
-                    </button>
-                </div>
-                
-                <div class="alarms-list" id="alarms-list">
-                    <!-- Alarms will be added here -->
-                </div>
-                
-                <!-- Add Alarm Modal -->
-                <div class="modal" id="alarm-modal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3>Add Alarm</h3>
-                            <button class="close-btn" id="close-alarm-modal">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Time</label>
-                                <input type="time" id="alarm-time">
-                            </div>
-                            <div class="form-group">
-                                <label>Label</label>
-                                <input type="text" id="alarm-label" placeholder="Wake up">
-                            </div>
-                            <div class="form-group">
-                                <label>Repeat</label>
-                                <div class="repeat-days">
-                                    <button class="day-btn" data-day="0">S</button>
-                                    <button class="day-btn" data-day="1">M</button>
-                                    <button class="day-btn" data-day="2">T</button>
-                                    <button class="day-btn" data-day="3">W</button>
-                                    <button class="day-btn" data-day="4">T</button>
-                                    <button class="day-btn" data-day="5">F</button>
-                                    <button class="day-btn" data-day="6">S</button>
+                <!-- Stopwatch View -->
+                <div class="view-container hidden" id="stopwatchView" role="tabpanel" aria-labelledby="tab-stopwatch">
+                    <div class="stopwatch-container">
+                        <div class="glass-card">
+                            <h2 class="card-title">Stopwatch</h2>
+                            
+                            <div class="stopwatch-display">
+                                <div class="stopwatch-time" id="stopwatchTime" aria-live="polite" aria-label="Stopwatch time">00:00.00</div>
+                                
+                                <div class="stopwatch-controls" role="group" aria-label="Stopwatch controls">
+                                    <button class="control-btn start-btn" id="stopwatchToggle" aria-describedby="stopwatch-help">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Start</span>
+                                    </button>
+                                    <button class="control-btn secondary-btn" id="stopwatchLap" aria-describedby="lap-help" disabled>
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                        <span>Lap</span>
+                                    </button>
+                                    <button class="control-btn reset-btn" id="stopwatchReset" aria-describedby="reset-help">
+                                        <i class="fas fa-undo" aria-hidden="true"></i>
+                                        <span>Reset</span>
+                                    </button>
+                                </div>
+                                
+                                <!-- Screen reader help text -->
+                                <div class="sr-only">
+                                    <div id="stopwatch-help">Press Space to start or pause the stopwatch</div>
+                                    <div id="lap-help">Press L to record a lap time</div>
+                                    <div id="reset-help">Press R to reset the stopwatch</div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Sound</label>
-                                <select id="alarm-sound">
-                                    <option value="beep">Beep</option>
-                                    <option value="chime">Chime</option>
-                                    <option value="bell">Bell</option>
-                                    <option value="digital">Digital</option>
-                                </select>
+                            
+                            <div class="lap-times hidden" id="lapTimes">
+                                <h3 class="lap-title">Lap Times</h3>
+                                <div class="lap-list" id="lapList" role="list" aria-label="Recorded lap times"></div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button class="control-btn secondary" id="cancel-alarm">Cancel</button>
-                            <button class="control-btn primary" id="save-alarm">Save</button>
-                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Pomodoro Tab -->
-        <section class="tab-content" id="pomodoro-tab">
-            <div class="pomodoro-container">
-                <div class="pomodoro-header">
-                    <h2><i class="fas fa-tomato"></i> Pomodoro Timer</h2>
-                    <div class="session-info">
-                        <span id="pomodoro-session">Work Session</span>
-                        <span id="pomodoro-count">1/4</span>
-                    </div>
-                </div>
-                
-                <div class="pomodoro-display">
-                    <div class="pomodoro-circle">
-                        <svg class="progress-ring" width="320" height="320">
-                            <circle class="progress-ring-background" cx="160" cy="160" r="140"></circle>
-                            <circle class="progress-ring-progress" cx="160" cy="160" r="140" id="pomodoro-progress"></circle>
-                        </svg>
-                        <div class="pomodoro-content">
-                            <div class="time-display" id="pomodoro-time">25:00</div>
-                            <div class="session-type" id="session-type">Focus Time</div>
+                <!-- Timer View -->
+                <div class="view-container hidden" id="timerView" role="tabpanel" aria-labelledby="tab-timer">
+                    <div class="timer-container">
+                        <div class="glass-card">
+                            <h2 class="card-title">Timer</h2>
+                            
+                            <div class="timer-setup" id="timerSetup">
+                                <fieldset class="time-inputs">
+                                    <legend class="sr-only">Set timer duration</legend>
+                                    <div class="time-input-group">
+                                        <label for="timerMinutes">Minutes</label>
+                                        <input type="number" id="timerMinutes" min="0" max="59" value="5" 
+                                               class="time-input" aria-describedby="timer-help">
+                                    </div>
+                                    <div class="time-input-group">
+                                        <label for="timerSeconds">Seconds</label>
+                                        <input type="number" id="timerSeconds" min="0" max="59" value="0" 
+                                               class="time-input" aria-describedby="timer-help">
+                                    </div>
+                                </fieldset>
+                                <div id="timer-help" class="sr-only">Set the duration for your timer using minutes and seconds</div>
+                            </div>
+                            
+                            <div class="timer-display">
+                                <div class="timer-time" id="timerTime" aria-live="polite" aria-label="Timer countdown">05:00</div>
+                                
+                                <div class="progress-ring hidden" id="timerProgress" role="progressbar" 
+                                     aria-label="Timer progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                    <svg class="progress-svg" viewBox="0 0 120 120" aria-hidden="true">
+                                        <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"/>
+                                        <circle id="progressCircle" cx="60" cy="60" r="54" fill="none" stroke="url(#gradient)" stroke-width="8" stroke-linecap="round"/>
+                                        <defs>
+                                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" style="stop-color:#3b82f6"/>
+                                                <stop offset="100%" style="stop-color:#8b5cf6"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                
+                                <div class="timer-controls" role="group" aria-label="Timer controls">
+                                    <button class="control-btn start-btn" id="timerToggle">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Start</span>
+                                    </button>
+                                    <button class="control-btn reset-btn" id="timerReset">
+                                        <i class="fas fa-square" aria-hidden="true"></i>
+                                        <span>Reset</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="pomodoro-controls">
-                    <button class="control-btn secondary" id="pomodoro-reset">
-                        <i class="fas fa-redo"></i>
-                        Reset
-                    </button>
-                    <button class="control-btn primary" id="pomodoro-start">
-                        <i class="fas fa-play"></i>
-                        Start
-                    </button>
-                    <button class="control-btn secondary" id="pomodoro-skip">
-                        <i class="fas fa-forward"></i>
-                        Skip
-                    </button>
-                </div>
-                
-                <div class="pomodoro-settings">
-                    <div class="setting-group">
-                        <label>Work Duration (min)</label>
-                        <input type="number" id="work-duration" min="1" max="60" value="25">
-                    </div>
-                    <div class="setting-group">
-                        <label>Short Break (min)</label>
-                        <input type="number" id="short-break" min="1" max="30" value="5">
-                    </div>
-                    <div class="setting-group">
-                        <label>Long Break (min)</label>
-                        <input type="number" id="long-break" min="1" max="60" value="15">
-                    </div>
-                </div>
-                
-                <div class="pomodoro-stats">
-                    <div class="stat-item">
-                        <div class="stat-value" id="completed-sessions">0</div>
-                        <div class="stat-label">Completed Sessions</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="total-focus-time">0h 0m</div>
-                        <div class="stat-label">Total Focus Time</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
 
-    <!-- Settings Modal -->
-    <div class="modal" id="settings-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-cog"></i> Settings</h3>
-                <button class="close-btn" id="close-settings">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="settings-section">
-                    <h4>Appearance</h4>
-                    <div class="form-group">
-                        <label>Theme</label>
-                        <select id="theme-select">
-                            <option value="dark">Dark</option>
-                            <option value="light">Light</option>
-                            <option value="auto">Auto</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Accent Color</label>
-                        <div class="color-picker">
-                            <div class="color-option" data-color="#6366f1" style="background: #6366f1;"></div>
-                            <div class="color-option" data-color="#8b5cf6" style="background: #8b5cf6;"></div>
-                            <div class="color-option" data-color="#06b6d4" style="background: #06b6d4;"></div>
-                            <div class="color-option" data-color="#10b981" style="background: #10b981;"></div>
-                            <div class="color-option" data-color="#f59e0b" style="background: #f59e0b;"></div>
-                            <div class="color-option" data-color="#ef4444" style="background: #ef4444;"></div>
+                <!-- Pomodoro View -->
+                <div class="view-container hidden" id="pomodoroView" role="tabpanel" aria-labelledby="tab-pomodoro">
+                    <div class="pomodoro-container">
+                        <div class="glass-card">
+                            <h2 class="card-title">Pomodoro Timer</h2>
+                            
+                            <div class="pomodoro-display">
+                                <div class="pomodoro-mode" id="pomodoroMode" aria-live="polite">Work Session</div>
+                                <div class="pomodoro-time" id="pomodoroTime" aria-live="polite" aria-label="Pomodoro time remaining">25:00</div>
+                                <div class="pomodoro-sessions">Sessions completed: <span id="pomodoroSessions" aria-live="polite">0</span></div>
+                                
+                                <div class="pomodoro-controls" role="group" aria-label="Pomodoro controls">
+                                    <button class="control-btn start-btn" id="pomodoroToggle">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Start</span>
+                                    </button>
+                                    <button class="control-btn reset-btn" id="pomodoroReset">
+                                        <i class="fas fa-undo" aria-hidden="true"></i>
+                                        <span>Reset</span>
+                                    </button>
+                                </div>
+                                
+                                <fieldset class="pomodoro-mode-buttons">
+                                    <legend class="sr-only">Select pomodoro mode</legend>
+                                    <button class="mode-btn active" data-mode="work" aria-pressed="true">Work (25m)</button>
+                                    <button class="mode-btn" data-mode="short" aria-pressed="false">Short (5m)</button>
+                                    <button class="mode-btn" data-mode="long" aria-pressed="false">Long (15m)</button>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="settings-section">
-                    <h4>Notifications</h4>
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="enable-notifications" checked>
-                            <span>Enable Notifications</span>
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="enable-sounds" checked>
-                            <span>Enable Sounds</span>
-                        </label>
+
+                <!-- World Clock View -->
+                <div class="view-container hidden" id="worldView" role="tabpanel" aria-labelledby="tab-world">
+                    <div class="world-clock-grid" id="worldClockGrid" role="list" aria-label="World clocks showing different time zones">
+                        <!-- World clocks will be populated by JavaScript -->
                     </div>
                 </div>
-                
-                <div class="settings-section">
-                    <h4>Clock</h4>
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="show-seconds" checked>
-                            <span>Show Seconds</span>
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="show-analog" checked>
-                            <span>Show Analog Clock</span>
-                        </label>
+
+                <!-- Alarms View -->
+                <div class="view-container hidden" id="alarmsView" role="tabpanel" aria-labelledby="tab-alarms">
+                    <div class="alarms-container">
+                        <!-- Add new alarm -->
+                        <div class="glass-card">
+                            <h2 class="card-title">Add New Alarm</h2>
+                            <form class="alarm-form" role="form" aria-label="Add new alarm">
+                                <label for="newAlarmTime" class="sr-only">Alarm time</label>
+                                <input type="time" id="newAlarmTime" value="09:00" class="alarm-time-input" 
+                                       aria-describedby="alarm-time-help" required>
+                                <div id="alarm-time-help" class="sr-only">Select the time for your alarm</div>
+                                
+                                <label for="newAlarmLabel" class="sr-only">Alarm label (optional)</label>
+                                <input type="text" id="newAlarmLabel" placeholder="Alarm label (optional)" 
+                                       class="alarm-label-input" aria-describedby="alarm-label-help">
+                                <div id="alarm-label-help" class="sr-only">Enter an optional label for your alarm</div>
+                                
+                                <button type="submit" class="control-btn start-btn" id="addAlarmBtn">
+                                    <i class="fas fa-plus" aria-hidden="true"></i>
+                                    <span>Add Alarm</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Existing alarms -->
+                        <div class="alarms-list" id="alarmsList" role="list" aria-label="Your alarms">
+                            <!-- Alarms will be populated by JavaScript -->
+                        </div>
                     </div>
                 </div>
+
+                <!-- Settings View -->
+                <div class="view-container hidden" id="settingsView">
+                    <div class="settings-container">
+                        <div class="glass-card">
+                            <h2 class="card-title">Settings</h2>
+                            
+                            <div class="settings-list">
+                                <!-- 24 Hour Format -->
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>24-Hour Format</h3>
+                                        <p>Use 24-hour time format</p>
+                                    </div>
+                                    <div class="toggle-switch" id="toggle24Hour">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Sound Effects -->
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>Sound Effects</h3>
+                                        <p>Play sounds for notifications</p>
+                                    </div>
+                                    <div class="toggle-switch active" id="toggleSound">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Notifications -->
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>Browser Notifications</h3>
+                                        <p>Show desktop notifications</p>
+                                    </div>
+                                    <div class="toggle-switch active" id="toggleNotifications">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Actions -->
+                                <div class="setting-actions">
+                                    <h3>Quick Actions</h3>
+                                    <div class="action-buttons">
+                                        <button class="action-btn" id="testSound">
+                                            <i class="fas fa-volume-up"></i>
+                                            <span>Test Sound</span>
+                                        </button>
+                                        <button class="action-btn" id="testNotification">
+                                            <i class="fas fa-bell"></i>
+                                            <span>Test Notification</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </main>
     </div>
 
-    <!-- Notification Container -->
-    <div class="notification-container" id="notification-container"></div>
-
-    <!-- Audio Elements -->
-    <audio id="beep-sound" preload="auto">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmUgBzuU2/LNeSsA==" type="audio/wav">
+    <!-- Audio for notifications -->
+    <audio id="notificationSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBD+X4eO7ayk" type="audio/wav">
     </audio>
 
-    <!-- External JavaScript Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
-    
-    <!-- Custom JavaScript -->
+    <!-- Scripts -->
     <script src="js/scripts.js"></script>
 </body>
 </html>
